@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/Content/mdl/material.blue_grey-blue.min.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+
+    @Styles.Render("~/font-awesome/css")
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+<body ng-app="AppLotify">
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">
+                    @Html.ActionLink("Lotify", "Index", "Home", new { area = "" }, new { @class = "mdl-navigation__link" })
+                </span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+
+
+                <!-- Navigation. We hide it in small screens. -->
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    @Html.Partial("_LoginPartial")
+
+                    <!-- Right aligned menu below button -->
+
+                    <button id="menu-empleado"
+                            class="mdl-button mdl-js-button colorblanco">
+                          <i class="material-icons">more_vert</i>
+                        Empleados
+                    </button>
+                    
+                    <button id="menu-clientes"
+                            class="mdl-button mdl-js-button colorblanco">
+                        <i class="material-icons">more_vert</i>
+                        Clientes
+                    </button>
+
+                    <button id="menu-lotes"
+                            class="mdl-button mdl-js-button colorblanco">
+                        <i class="material-icons">more_vert</i>
+                        Lotes
+                    </button>
+
+                    <button id="menu-ventas"
+                            class="mdl-button mdl-js-button colorblanco">
+                        <i class="material-icons">more_vert</i>
+                        Ventas
+                    </button>
+
+                    <button id="menu-reportes"
+                            class="mdl-button mdl-js-button colorblanco">
+                        <i class="material-icons">more_vert</i>
+                        Reportes
+                    </button>
+
+                    <button id="menu-planes"
+                            class="mdl-button mdl-js-button colorblanco">
+                        <i class="material-icons">more_vert</i>
+                        Planes
+                    </button>
+
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        for="menu-empleado">
+                        <li class="mdl-menu__item">Empleado Nuevo</li>
+                        <li class="mdl-menu__item">Creacion de Usuario</li>
+                        <li class="mdl-menu__item">Lista de Empleados</li>
+                    </ul>
+
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        for="menu-clientes">
+                        <li class="mdl-menu__item">Clientes Nuevo</li>
+                        <li class="mdl-menu__item">Estado de Cliente</li>
+                        <li class="mdl-menu__item">Lista de Clientes</li>
+                    </ul>
+
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        for="menu-lotes">
+                        <li class="mdl-menu__item">Registrar Lote</li>
+                        <li class="mdl-menu__item">Lista de Lotes</li>
+                        <li class="mdl-menu__item">Items
+                            <ul>
+                                <li class="ali">Manzana</li>
+                                <li class="ali">Area</li>
+                                <li class="ali">Fase</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        for="menu-ventas">
+                        <li class="mdl-menu__item">Nueva Venta</li>
+                        <li class="mdl-menu__item">Ventas Realizadas</li>
+                    </ul>
+
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        for="menu-reportes">
+                        <li class="mdl-menu__item">Reporte de Ventas</li>
+                        <li class="mdl-menu__item">Reporte de Pagos</li>
+                        <li class="mdl-menu__item">Reporte de Mensualidades</li>
+                        <li class="mdl-menu__item">Reporte de Clientes</li>
+                        <li class="mdl-menu__item">Reporte de Comisiones</li>
+                        <li class="mdl-menu__item">Reporte de Empleados</li>
+                        <li class="mdl-menu__item">Reporte de Lotes</li>
+                    </ul>
+
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        for="menu-planes">
+                        <li class="mdl-menu__item">Tipo de Enganche</li>
+                        <li class="mdl-menu__item">Plazos(tiempo a pagar)</li>
+                        <li class="mdl-menu__item">Cuotas Mensuales</li>
+                    </ul>
+
+                </nav>
+
+            </div>
+        </header>
+
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Title</span>
+            <nav class="mdl-navigation">
+                @Html.ActionLink("Inicio", "Index", "Home", new { @class = "mdl-navigation__link" })
+                @Html.ActionLink("Acerca de", "About", "Home", new { @class = "mdl-navigation__link" })
+                @Html.Partial("_LoginPartial")
+            </nav>
+        </div>
+
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/mdl/js")
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
