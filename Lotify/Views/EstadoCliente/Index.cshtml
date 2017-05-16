@@ -1,1 +1,93 @@
-﻿<h2>Estado de los Clientes</h2>
+﻿@model IList<Lotify.Models.Clientes.EstadoCliente>
+
+
+<div ng-controller="EstadoClienteController">
+    <div class="content-grid mdl-grid">
+
+        <div class="mdl-cell mdl-cell--3-col"></div>
+
+        <div class="mdl-cell mdl-cell--6-col" ng-hide="mostrar">
+            <table id="lotifyTable" class="mdl-data-table mdl-shadow--2dp" cellspacing="0" width="100%" datatable="ng">
+                <thead>
+                    <tr>
+                        <th>NOMBRE DEL ESTADO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr ng-repeat="r in resultados">
+                        <td>{{r.NombreEstado}}</td>
+                        <td>
+                            <button class="mdl-button mdl-button--icon" id="abrir-dialog" ng-click="selectElementDelete(r.Id)">
+                                <i class="material-icons">delete</i>
+                            </button>
+                            <button class="mdl-button mdl-button--icon modal__trigger" data-modal="#myModal" ng-click="showId(r.Id)">
+                                <i class="material-icons">mode_edit</i>
+                            </button>
+                       </td>
+                   </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mdl-cell mdl-cell--3-col"></div>
+
+        <button class="mdl-button mdl-button--icon mdl-button--fab mdl-button--colored" ng-click="show()">
+            <i class="material-icons">list</i>
+        </button>
+
+      </div>
+
+    <dialog class="mdl-dialog">
+        <h5 class="mdl-dialog__title">Deseas Eliminar El Registro?</h5>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button siEliminar" ng-click="delete()">Si</button>
+            <button type="button" class="mdl-button noEliminar" ng-init="datos.Id = '' ">No</button>
+        </div>
+    </dialog>
+
+    <div id="myModal" class="modal modal__bg">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <div class="modal__title">
+                        <h2 class="modal__title-text">Actualizar</h2>
+                    </div>
+
+                    <span class="mdl-button mdl-button--icon mdl-js-button  material-icons  modal__close"></span>
+                </div>
+
+
+                <div class="modal__text">
+                    <input type="hidden" ng-model="object.Id"/>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="NombreEstado" ng-model="object.NombreEstado">
+                        <label class="mdl-textfield__label" for="NombreEstado"></label>
+                    </div>
+                </div>
+
+                <div class="modal__footer">
+                    <a class="mdl-button mdl-button--colored mdl-js-button modal__close">
+                        Cancelar
+                    </a>
+                    <input type="submit" class="mdl-button mdl-button--colored mdl-js-button modal__close"
+                           value="Actualizar" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var dialog = document.querySelector('dialog');
+
+    dialog.querySelector('.siEliminar').addEventListener('click', function() {
+      dialog.close();
+    });
+
+    dialog.querySelector('.noEliminar').addEventListener('click', function () {
+      dialog.close();
+    });
+    
+</script>

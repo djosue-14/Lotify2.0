@@ -198,6 +198,7 @@
     <Compile Include="Models\Clientes\Cliente.cs" />
     <Compile Include="Models\Clientes\ClienteViewModels.cs" />
     <Compile Include="Models\Clientes\EstadoCliente.cs" />
+    <Compile Include="Models\Clientes\EstadoClienteViewModels.cs" />
     <Compile Include="Models\Empleados\CargoEmpleado.cs" />
     <Compile Include="Models\Empleados\Empleado.cs" />
     <Compile Include="Models\Empleados\EstadoEmpleado.cs" />
@@ -233,6 +234,8 @@
     <Content Include="Content\font-awesome\css\font-awesome.css" />
     <Content Include="Content\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\mdl\dataTables.material.min.css" />
+    <Content Include="Content\mdl\material-modal.min.css" />
     <Content Include="Content\mdl\material.blue_grey-blue.min.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
@@ -240,6 +243,13 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\welcome_card.jpg" />
+    <Content Include="Scripts\angular\angular-datatables.js" />
+    <Content Include="Scripts\angular\angular-local-storage.min.js" />
+    <Content Include="Scripts\angular\angular.min.js" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\controllers\Clientes\EstadoClienteController.js" />
+    <Content Include="Scripts\app\services\appService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.eot" />
@@ -248,6 +258,8 @@
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\font-awesome\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\datatables\dataTables.material.min.js" />
+    <Content Include="Scripts\datatables\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -255,6 +267,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\mdl\material-modal.min.js" />
     <Content Include="Scripts\mdl\material.js" />
     <Content Include="Scripts\mdl\material.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -296,6 +309,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
     <Content Include="Views\EstadoCliente\Index.cshtml" />
+    <Content Include="Views\EstadoCliente\Create.cshtml" />
+    <Content Include="Views\EstadoCliente\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html >
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -7,13 +7,15 @@
     <title>@ViewBag.Title</title>
 
     <link rel="stylesheet" href="~/Content/mdl/material.blue_grey-blue.min.css">
+    <link rel="stylesheet" href="~/Content/mdl/dataTables.material.min.css"/>
+    <link rel="stylesheet" href="~/Content/mdl/material-modal.min.css"/>
     <link rel="stylesheet" href="~/Content/style.css">
 
     @Styles.Render("~/font-awesome/css")
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 </head>
-<body ng-app="AppLotify">
+<body ng-app="MyApp">
     <!-- Always shows a header, even in smaller screens. -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
@@ -142,9 +144,29 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/mdl/js")
+    <script src="~/Scripts/datatables/jquery.dataTables.min.js"></script>
 
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/mdl/js")
+    <script src="~/Scripts/datatables/dataTables.material.min.js"></script>
+    <script src="~/Scripts/mdl/material-modal.min.js"></script>
+
+    <!--Angular-->
+    <script src="~/Scripts/angular/angular.min.js"></script>
+    <script src="~/Scripts/angular/angular-datatables.js"></script>
+
+    <script src="~/Scripts/app/app.js"></script>
+    <!--Services-->
+    <script src="~/Scripts/app/services/appService.js"></script>
+
+    <!--Controlles-->
+    <script src="~/Scripts/app/controllers/Clientes/EstadoClienteController.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#lotifyTable').DataTable();
+        })
+
+    </script>
 
 </body>
 </html>

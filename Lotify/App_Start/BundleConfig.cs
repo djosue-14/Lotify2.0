@@ -34,6 +34,10 @@ namespace Lotify
             bundles.Add(new StyleBundle("~/font-awesome/css").Include(
                 "~/Content/font-awesome/css/font-awesome*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                "~/Scripts/angular/angular.min.js",
+                "~/Scripts/angular/angular-datatables.js"));
+
         }
     }
 }
