@@ -235,7 +235,6 @@
     <Content Include="Content\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\mdl\dataTables.material.min.css" />
-    <Content Include="Content\mdl\material-modal.min.css" />
     <Content Include="Content\mdl\material.blue_grey-blue.min.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
@@ -267,8 +266,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\mdl\material-modal.min.js" />
-    <Content Include="Scripts\mdl\material.js" />
     <Content Include="Scripts\mdl\material.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />

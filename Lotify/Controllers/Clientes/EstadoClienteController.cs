@@ -69,12 +69,20 @@ namespace Lotify.Controllers.Clientes
                 dbCtx.SaveChanges();
             }
             return RedirectToAction("Index");
-            //return View(model);
         }
 
-        public ActionResult Edit()
+        [HttpGet]
+        public ActionResult Edit(int id)
         {
-            return View();
+            ViewBag.Title = "Editar Estado";
+
+            EstadoClienteViewModels estado = new EstadoClienteViewModels();
+
+            EstadoCliente = dbCtx.EstadoCliente.FirstOrDefault(a => a.Id == id);
+            estado.Id = EstadoCliente.Id;
+            estado.NombreEstado = EstadoCliente.NombreEstado;
+
+            return View(estado);
         }
 
         [HttpPost, ActionName("Edit")]
@@ -82,7 +90,7 @@ namespace Lotify.Controllers.Clientes
         {
             if (ModelState.IsValid)
             {
-                EstadoCliente = (from p in dbCtx.EstadoCliente where p.Id == model.Id select p).FirstOrDefault();
+                EstadoCliente = dbCtx.EstadoCliente.FirstOrDefault(a => a.Id == model.Id);
                 EstadoCliente.NombreEstado = model.NombreEstado;
                 dbCtx.SaveChanges();
             }
@@ -94,8 +102,6 @@ namespace Lotify.Controllers.Clientes
         [HttpPost, ActionName("Delete")]
         public ActionResult Delete(EstadoClienteViewModels model)
         {
-            //int Id = model.Id;
-
             var estado = (from p in dbCtx.EstadoCliente where p.Id == model.Id
                         select p).FirstOrDefault();
 
