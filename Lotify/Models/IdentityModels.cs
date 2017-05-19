@@ -63,6 +63,7 @@ namespace Lotify.Models
         public ApplicationDbContext()
             : base("Lotify")
         {
+           //Configuration.ProxyCreationEnabled = false;
         }
 
         public static ApplicationDbContext Create()

@@ -8,6 +8,8 @@ namespace Lotify.Models.Clientes
 {
     public class ClienteViewModels
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(25, ErrorMessage = "Se requiere el nombre del cliente.")]
         [Display(Name = "Nombre")]
@@ -19,28 +21,29 @@ namespace Lotify.Models.Clientes
         public string Apellido { get; set; }
 
         [Required]
-        [StringLength(25, ErrorMessage = "Se requiere el número de DPI del cliente.")]
         [Display(Name = "DPI")]
         public long Dpi { get; set; }
 
         [Required]
-        [StringLength(25, ErrorMessage = "Se requiere especificar el genero del cliente.")]
+        [StringLength(1, ErrorMessage = "Se requiere especificar el genero del cliente.")]
         [Display(Name = "Genero")]
         public string Genero { get; set; }
 
         [Required]
-        [StringLength(25, ErrorMessage = "Se requiere la dirección del cliente.")]
+        [StringLength(50, ErrorMessage = "Se requiere la dirección del cliente.")]
         [Display(Name = "Direccion")]
         public string Direccion { get; set; }
 
         [Required]
-        [StringLength(25, ErrorMessage = "Se requiere la fecha de nacimiento.")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha de Nacimiento")]
         public DateTime FechaNacimiento { get; set; }
 
         [Required]
-        [StringLength(25, ErrorMessage = "Se requiere especificar el estado del cliente.")]
         [Display(Name = "Estado del Cliente")]
         public int EstadoClienteId { get; set; }
+
+        public List<EstadoCliente> EstadoCliente { get; set; }
     }
 }
