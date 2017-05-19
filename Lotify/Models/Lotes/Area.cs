@@ -16,7 +16,7 @@ namespace Lotify.Models.Lotes
         public int Id { get; set; }
         public string NombreArea {get; set;}
 
-        public virtual ICollection<Ubicacion> Ubicaciones { get; set; }
+        //public virtual ICollection<Ubicacion> Ubicaciones { get; set; }
     }
 
     public class AreaConfiguration: EntityTypeConfiguration<Area>

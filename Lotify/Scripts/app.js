@@ -1,8 +1,9 @@
-//Define la App Angular.
-var app = angular.module("App", ['datatables'])
+var dialog = document.querySelector('dialog');
 
-//Constante de la url del host
-app.constant("HOST", "http://localhost:8000" );
+dialog.querySelector('.siEliminar').addEventListener('click', function () {
+    dialog.close();
+});
 
-//Constante Token CSRF
-app.constant("TOKEN", " {{ csrf_token() }} ");
+dialog.querySelector('.noEliminar').addEventListener('click', function () {
+    dialog.close();
+});

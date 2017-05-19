@@ -156,16 +156,14 @@
     <!--Services-->
     <script src="~/Scripts/app/services/appService.js"></script>
 
-    <!--Controlles-->
-    <script src="~/Scripts/app/controllers/Clientes/EstadoClienteController.js"></script>
-    <script src="~/Scripts/app/controllers/Clientes/ClienteController.js"></script>
+    <script src="~/Scripts/app.js"></script>
 
     <script>
         $(document).ready(function () {
             $('#lotifyTable').DataTable();
         })
-
     </script>
 
+    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -87,7 +87,7 @@ namespace Lotify.Models
         public DbSet<Lotificadora> Lotificadora { get; set; }
         public DbSet<Manzana> Manzana { get; set; }
         public DbSet<Medida> Medida { get; set; }
-        public DbSet<Ubicacion> Ubicacion { get; set; }
+        //public DbSet<Ubicacion> Ubicacion { get; set; }
 
         //Pagos
         public DbSet<MesPago> MesPago { get; set; }
@@ -150,7 +150,7 @@ namespace Lotify.Models
             modelBuilder.Configurations.Add(new EstadoLoteConfiguration());
             modelBuilder.Configurations.Add(new LotificadoraConfiguration());
             modelBuilder.Configurations.Add(new ManzanaConfiguration());
-            modelBuilder.Configurations.Add(new UbicacionConfiguration());
+            //modelBuilder.Configurations.Add(new UbicacionConfiguration());
 
 
             //Pagos

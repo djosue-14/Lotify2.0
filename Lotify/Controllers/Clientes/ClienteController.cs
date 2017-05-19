@@ -31,10 +31,6 @@ namespace Lotify.Controllers.Clientes
         [HttpGet]
         public JsonResult Show()
         {
-            //List<Cliente> client = new List<Cliente>();
-            
-
-            //string lista2 = JsonConvert.SerializeObject(list);
 
             var clientes =  dbCtx.Cliente.Select(c => new {
                                 c.Id, c.Nombre, c.Apellido, c.Dpi, c.Genero, c.Direccion, c.FechaNacimiento,
@@ -44,10 +40,7 @@ namespace Lotify.Controllers.Clientes
                                 }
                             });
 
-            //string cliente2 = JsonConvert.SerializeObject(cliente2);
-
             return Json(clientes, JsonRequestBehavior.AllowGet);
-            //return cliente2;
         }
 
         [HttpGet]
@@ -76,11 +69,15 @@ namespace Lotify.Controllers.Clientes
                 cliente.Genero = model.Genero;
                 cliente.Direccion = model.Direccion;
                 cliente.FechaNacimiento = model.FechaNacimiento;
-                cliente.EstadoClienteId = model.EstadoClienteId;
+
+                //Seleccionamos el estad cliente que sea 'ACTIVO' y luego lo agregamos a FK EstadoClienteId
+                EstadoCliente estado = dbCtx.EstadoCliente.FirstOrDefault(e => e.NombreEstado == "Activo");
+                cliente.EstadoClienteId = estado.Id;
 
                 dbCtx.Cliente.Add(cliente);
                 dbCtx.SaveChanges();
             }
+
             return RedirectToAction("Index");
         }
 

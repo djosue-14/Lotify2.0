@@ -15,7 +15,7 @@ namespace Lotify.Models.Lotes
 
         public int Id { get; set; }
         public string NombreManzana { get; set; }
-        public virtual ICollection<Ubicacion> Ubicaciones { get; set; }
+        //public virtual ICollection<Ubicacion> Ubicaciones { get; set; }
 
     }
 

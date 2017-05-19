@@ -26,17 +26,19 @@ namespace Lotify.Models.Lotes
         public int EstadoLoteId { get; set; }
         public virtual EstadoLote EstadoLote { get; set; }
 
-        public virtual ICollection<DetalleVenta> DetalleVentas { get; set; }
-
         //Foreign Key a Lotificadora
         public int LotificadoraId { get; set; }
         public virtual Lotificadora Lotificadora { get; set; }
 
-        //public int ManzanaId { get; set; }
-        //public int AreaId { get; set; }
+        public int ManzanaId { get; set; }
+        public virtual Manzana Manzana { get; set; }
+        public int AreaId { get; set; }
+        public virtual Area Area { get; set; }
         
-        public int UbicacionId { get; set; }
-        public virtual Ubicacion Ubicacion { get; set; }
+        //public int UbicacionId { get; set; }
+        //public virtual Ubicacion Ubicacion { get; set; }
+
+        public virtual ICollection<DetalleVenta> DetalleVentas { get; set; }
 
     }
 
