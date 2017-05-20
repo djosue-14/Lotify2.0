@@ -1,4 +1,4 @@
-﻿.mdl-grid.center-items {
+.mdl-grid.center-items {
   justify-content: center;
 }
 
@@ -20,6 +20,10 @@ color: white;
 
 .colorblack{
 color: black;
+}
+
+.color-texto {
+   color: #455a64;
 }
 
 .ali {
