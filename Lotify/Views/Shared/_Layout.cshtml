@@ -43,6 +43,7 @@
                     <button id="menu-clientes"
                             class="mdl-button mdl-js-button colorblanco">
                         <i class="material-icons">more_vert</i>
+
                         Clientes
                     </button>
 
@@ -79,9 +80,18 @@
 
                     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                         for="menu-clientes">
-                        <li class="mdl-menu__item">Clientes Nuevo</li>
-                        <li class="mdl-menu__item">Estado de Cliente</li>
-                        <li class="mdl-menu__item">Lista de Clientes</li>
+                        <li class="mdl-menu__item">
+                            <a href="@Url.Action("Create", "Cliente")" class = "mdl-navigation__link mdl-color--blue_grey-">Clientes Nuevo
+                            </a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a href="@Url.Action("Create", "EstadoCliente")" class = "mdl-navigation__link">Estado de Cliente
+                            </a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a href="@Url.Action("Index", "Cliente")" class = "mdl-navigation__link">Lista de Clientes
+                            </a>
+                        </li>
                     </ul>
 
                     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
