@@ -1,0 +1,50 @@
+﻿@model Lotify.Models.Empleados.EmpleadoViewModels
+
+@using (Html.BeginForm("Create", "Empleado", FormMethod.Post))
+{
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.LabelFor(m => m.Nombre, new { @class = "mdl-textfield__label" })
+        @Html.TextBoxFor(m => m.Nombre, new { @class = "mdl-textfield__input" })
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.LabelFor(m => m.Apellido, new { @class = "mdl-textfield__label" })
+        @Html.TextBoxFor(m => m.Apellido, new { @class = "mdl-textfield__input" })
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.LabelFor(m => m.Dpi, new { @class = "mdl-textfield__label" })
+        @Html.TextBoxFor(m => m.Dpi, new { @class = "mdl-textfield__input" })
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.LabelFor(m => m.Genero, new { @class = "mdl-textfield__label" })
+        @Html.TextBoxFor(m => m.Genero, new { @class = "mdl-textfield__input" })
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.LabelFor(m => m.Direccion, new { @class = "mdl-textfield__label" })
+        @Html.TextBoxFor(m => m.Direccion, new { @class = "mdl-textfield__input" })
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.EditorFor(m => m.FechaNacimiento, new { @type = "date" })
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <select name="CargoEmpleadoId" id="CargoEmpleadoId">
+            @foreach (var item in Model.CargoEmpleado)
+            {
+                <option value="@item.Id">@item.NombreCargo @item.Id</option>
+            }
+        </select>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.LabelFor(m => m.Email, new { @class = "mdl-textfield__label" })
+        @Html.TextBoxFor(m => m.Email, new { @class = "mdl-textfield__input" })
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.LabelFor(m => m.Password, new { @class = "mdl-textfield__label" })
+        @Html.PasswordFor(m => m.Password, new { @class = "mdl-textfield__input" })
+    </div>
+
+    <input type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+           value="Registrarse" />
+}

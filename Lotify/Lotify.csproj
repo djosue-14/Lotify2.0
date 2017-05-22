@@ -181,6 +181,7 @@
     <Compile Include="Controllers\Clientes\ClienteController.cs" />
     <Compile Include="Controllers\Clientes\EstadoClienteController.cs" />
     <Compile Include="Controllers\Empleados\CargoEmpleadoController.cs" />
+    <Compile Include="Controllers\Empleados\EmpleadoController.cs" />
     <Compile Include="Controllers\Empleados\EstadoEmpleadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Lotes\AreaController.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Models\Empleados\CargoEmpleado.cs" />
     <Compile Include="Models\Empleados\CargoEmpleadoViewModels.cs" />
     <Compile Include="Models\Empleados\Empleado.cs" />
+    <Compile Include="Models\Empleados\EmpleadoViewModels.cs" />
     <Compile Include="Models\Empleados\EstadoEmpleado.cs" />
     <Compile Include="Models\Empleados\EstadoEmpleadoViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -366,6 +368,9 @@
     <Content Include="Views\CompaniaTelefono\Create.cshtml" />
     <Content Include="Views\CompaniaTelefono\Edit.cshtml" />
     <Content Include="Views\CompaniaTelefono\Index.cshtml" />
+    <Content Include="Views\Empleado\Create.cshtml" />
+    <Content Include="Views\Empleado\Index.cshtml" />
+    <Content Include="Views\Empleado\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

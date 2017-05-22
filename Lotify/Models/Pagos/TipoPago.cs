@@ -27,7 +27,7 @@ namespace Lotify.Models.Pagos
 
             Property(p => p.NombreTipo)
                 .IsRequired()
-                .HasMaxLength(15);
+                .HasMaxLength(25);
         }
     }
 }
