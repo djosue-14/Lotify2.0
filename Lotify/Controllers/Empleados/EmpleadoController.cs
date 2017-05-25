@@ -145,9 +145,10 @@ namespace Lotify.Controllers.Empleados
         {
             ViewBag.Title = "Editar Empleado";
 
-            EmpleadoViewModels model = new EmpleadoViewModels();
+            EmpleadoEditViewModels model = new EmpleadoEditViewModels();
 
             empleado = dbCtx.Empleado.FirstOrDefault(a => a.Id == id);
+            model.Id = empleado.Id;
             model.Nombre = empleado.Nombre;
             model.Apellido = empleado.Apellido;
             model.Dpi = empleado.Dpi;
@@ -156,6 +157,7 @@ namespace Lotify.Controllers.Empleados
             model.FechaNacimiento = empleado.FechaNacimiento;
             model.EstadoEmpleadoId = empleado.EstadoEmpleadoId;
             model.CargoEmpleadoId = empleado.CargoEmpleadoId;
+            model.UserId = empleado.UserId;
 
             model.EstadoEmpleado = dbCtx.EstadoEmpleado.ToList();
             model.CargoEmpleado = dbCtx.CargoEmpleado.ToList();
@@ -164,11 +166,12 @@ namespace Lotify.Controllers.Empleados
         }
 
         [HttpPost, ActionName("Edit")]
-        public ActionResult Edit(EmpleadoViewModels model)
+        public ActionResult Edit(EmpleadoEditViewModels model)
         {
             if (ModelState.IsValid)
             {
                 empleado = dbCtx.Empleado.FirstOrDefault(a => a.Id == model.Id);
+
                 empleado.Nombre = model.Nombre;
                 empleado.Apellido = model.Apellido;
                 empleado.Dpi = model.Dpi;
@@ -179,6 +182,12 @@ namespace Lotify.Controllers.Empleados
                 empleado.CargoEmpleadoId = model.CargoEmpleadoId;
 
                 dbCtx.SaveChanges();
+            }
+            else
+            {
+                model.EstadoEmpleado = dbCtx.EstadoEmpleado.ToList();
+                model.CargoEmpleado = dbCtx.CargoEmpleado.ToList();
+                return View(model);
             }
 
             return RedirectToAction("Index");

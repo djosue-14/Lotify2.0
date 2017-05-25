@@ -1,5 +1,6 @@
 ﻿using Lotify.Models;
 using Lotify.Models.Clientes;
+using Lotify.Models.Telefonos;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -54,13 +55,16 @@ namespace Lotify.Controllers.Clientes
         public ActionResult Create()
         {
             ViewBag.Title = "Agregar Cliente";
-            return View();
+            ClienteViewModels ClienteTelefono = new ClienteViewModels();
+
+            ClienteTelefono.Companias = dbCtx.CompaniaTelefono.ToList();
+            
+            return View(ClienteTelefono);
         }
 
         [HttpPost]
         public ActionResult Create(ClienteViewModels model)
         {
-
             if (ModelState.IsValid)
             {
                 cliente.Nombre = model.Nombre;
@@ -75,6 +79,16 @@ namespace Lotify.Controllers.Clientes
                 cliente.EstadoClienteId = estado.Id;
 
                 dbCtx.Cliente.Add(cliente);
+                dbCtx.SaveChanges();
+
+                //int ClienteId = cliente.Id;
+
+                TelefonoCliente telefono = new TelefonoCliente();
+                telefono.NumeroTelefono = model.NumeroTelefono;
+                telefono.CompaniaTelefonoId = model.CompaniaTelefonoId;
+                telefono.ClienteId = cliente.Id;
+
+                dbCtx.TelefonoCliente.Add(telefono);
                 dbCtx.SaveChanges();
             }
 

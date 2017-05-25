@@ -1,1 +1,62 @@
-﻿<h1>Hola Llegue a Edit</h1>
+﻿@model Lotify.Models.Empleados.EmpleadoEditViewModels
+
+@using (Html.BeginForm("Edit", "Empleado", FormMethod.Post))
+{
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.LabelFor(m => m.Nombre, new { @class = "mdl-textfield__label" })
+        @Html.TextBoxFor(m => m.Nombre, new { @class = "mdl-textfield__input" })
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.LabelFor(m => m.Apellido, new { @class = "mdl-textfield__label" })
+        @Html.TextBoxFor(m => m.Apellido, new { @class = "mdl-textfield__input" })
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.LabelFor(m => m.Dpi, new { @class = "mdl-textfield__label" })
+        @Html.TextBoxFor(m => m.Dpi, new { @class = "mdl-textfield__input" })
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.LabelFor(m => m.Genero, new { @class = "mdl-textfield__label" })
+        @Html.TextBoxFor(m => m.Genero, new { @class = "mdl-textfield__input" })
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.LabelFor(m => m.Direccion, new { @class = "mdl-textfield__label" })
+        @Html.TextBoxFor(m => m.Direccion, new { @class = "mdl-textfield__input" })
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        @Html.EditorFor(m => m.FechaNacimiento, new { @type = "date" })
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <select name="EstadoEmpleadoId" id="EstadoEmpleadoId">
+            @foreach (var item in Model.EstadoEmpleado)
+            {
+                if (@item.Id == Model.EstadoEmpleadoId)
+                {
+                    <option value="@item.Id" selected="selected">@item.NombreEstado</option>
+                }
+                else
+                {
+                    <option value="@item.Id">@item.NombreEstado</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <select name="CargoEmpleadoId" id="CargoEmpleadoId">
+            @foreach (var item in Model.CargoEmpleado)
+            {
+                if (@item.Id == Model.CargoEmpleadoId)
+                {
+                    <option value="@item.Id" selected="selected">@item.NombreCargo</option>
+                }
+                else
+                {
+                    <option value="@item.Id">@item.NombreCargo</option>
+                }
+            }
+        </select>
+    </div>
+    <input type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+           value="Actualizar"/>
+}

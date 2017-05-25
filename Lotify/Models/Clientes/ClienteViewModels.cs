@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lotify.Models.Telefonos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -45,5 +46,15 @@ namespace Lotify.Models.Clientes
         public int EstadoClienteId { get; set; }
 
         public List<EstadoCliente> EstadoCliente { get; set; }
+
+
+        //Aca empieza TelefonoCliente
+
+        [Display(Name = "Numero de Telefono")]
+        public int NumeroTelefono { get; set; }
+        [Display(Name = "Compania de Telefono")]
+        public int CompaniaTelefonoId { get; set; }
+        [Display(Name = "Lista Companias Telefonicas")]
+        public List<CompaniaTelefono> Companias { get; set; }
     }
 }

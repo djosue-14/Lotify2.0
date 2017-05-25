@@ -1,40 +1,37 @@
-﻿@model IList<Lotify.Models.Empleados.Empleado>
-
-<div ng-controller="EmpleadoController">
+﻿<div ng-controller="LoteController">
 
     <div class="content-grid mdl-grid">
 
+        <div class="mdl-cell mdl-cell--2-col"></div>
 
-        <div class="mdl-cell mdl-cell--10-col" ng-hide="mostrar">
+        <div class="mdl-cell mdl-cell--8-col" ng-hide="mostrar">
             <table id="lotifyTable" class="mdl-data-table mdl-shadow--2dp" cellspacing="0" width="100%" datatable="ng">
                 <thead>
                     <tr>
-                        <th>NOMBRE</th>
-                        <th>DPI</th>
-                        <th>GENERO</th>
-                        <th>DIRECCION</th>
-                        <th>FECHA NACIMIENTO</th>
-                        <th>ESTADO</th>
-                        <th>CARGO EMPLEADO</th>
-                        <th>SUELDO</th>
+                        <th>NUMERO DE LOTE</th>
+                        <th>PRECIO</th>
+                        <th>MEDIDA</th>
+                        <th>ESTADO DEL LOTE</th>
+                        <th>LOTIFICADORA</th>
+                        <th>MANZANA</th>
+                        <th>AREA</th>
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="r in resultados">
-                        <td>{{r.Nombre + " " + r.Apellido}}</td>
-                        <td>{{r.Dpi}}</td>
-                        <td>{{r.Genero}}</td>
-                        <td>{{r.Direccion}}</td>
-                        <td>{{r.FechaNacimiento | date: 'dd/MM/yyyy' }}</td>
-                        <td>{{r.EstadoEmpleado.NombreEstado}}</td>
-                        <td>{{r.CargoEmpleado.NombreCargo}}</td>
-                        <td>{{r.CargoEmpleado.Sueldo}}</td>
+                        <td>{{r.NumeroLote}}</td>
+                        <td>{{r.Precio}}</td>
+                        <td>{{r.Medida.Ancho + " x " + r.Medida.Largo }}</td>
+                        <td>{{r.EstadoLote.NombreEstado }}</td>
+                        <td>{{r.Lotificadora.NombreLotificadora }}</td>
+                        <td>{{r.Manzana.NombreManzana}}</td>
+                        <td>{{r.Area.NombreArea}}</td>
                         <td>
                             <button class="mdl-button mdl-button--icon" id="abrir-dialog" ng-click="selectElementDelete(r.Id)">
                                 <i class="material-icons">delete</i>
                             </button>
-                            <a href="@Url.Action("Edit", "Empleado")/{{r.Id}}" class="mdl-button mdl-button--icon">
+                            <a href="@Url.Action("Edit", "Lote")/{{r.Id}}" class="mdl-button mdl-button--icon">
                                 <i class="material-icons">mode_edit</i>
                             </a>
                         </td>
@@ -43,7 +40,7 @@
             </table>
         </div>
 
-        <div class="mdl-cell mdl-cell--1-col"></div>
+        <div class="mdl-cell mdl-cell--2-col"></div>
 
     </div>
 
@@ -59,5 +56,5 @@
 </div>
 
 @section Scripts {
-    <script src="~/Scripts/app/controllers/Empleados/EmpleadoController.js"></script>
+    <script src="~/Scripts/app/controllers/Lotes/LoteController.js"></script>
 }
