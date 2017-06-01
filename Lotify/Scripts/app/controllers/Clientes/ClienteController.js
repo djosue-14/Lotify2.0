@@ -95,5 +95,8 @@ app.controller('ClienteController', function ($scope, $timeout, $http, appServic
         $scope.datos.Id = id;
 	};
     
+	$scope.compartir = function (id) {
+	    appService.setShare(id);
+	};
 
 });

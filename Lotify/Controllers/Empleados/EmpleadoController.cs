@@ -133,6 +133,8 @@ namespace Lotify.Controllers.Empleados
                     dbCtx.Empleado.Add(empleado);
                     dbCtx.SaveChanges();
 
+                    model.CargoEmpleado = dbCtx.CargoEmpleado.ToList();
+
                     return RedirectToAction("Index");
                 }
             }

@@ -83,6 +83,7 @@ namespace Lotify.Models
         //Lotes
         public DbSet<Area> Area { get; set; }
         public DbSet<EstadoLote> EstadoLote { get; set; }
+        public DbSet<Interes> Interes { get; set; }
         public DbSet<Lote> Lote { get; set; }
         public DbSet<Lotificadora> Lotificadora { get; set; }
         public DbSet<Manzana> Manzana { get; set; }

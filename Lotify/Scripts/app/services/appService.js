@@ -1,4 +1,4 @@
-app.factory('appService', function ($http, HOST) {
+app.factory('appService', function ($http, HOST, localStorageService) {
 
     var appServiceFactory = {};
 
@@ -20,7 +20,7 @@ app.factory('appService', function ($http, HOST) {
 
    //Funcion para guardar un registro.
    var _save = function(data, url){
-      return $http.post(url, data)
+       return $http.post(url, data)
          .success(function (results){
             return results;
          });
@@ -33,10 +33,21 @@ app.factory('appService', function ($http, HOST) {
          });
    };
 
+   var _setShare = function (datos) {
+       localStorageService.remove("ClienteId")
+       localStorageService.set("ClienteId", datos);
+   };
+
+   var _getShare = function(){
+       return localStorageService.get("ClienteId");
+   }; 
+
       appServiceFactory.showId = _showId;
       appServiceFactory.show = _show;
       appServiceFactory.save = _save;
       appServiceFactory.delete = _delete;
+      appServiceFactory.setShare = _setShare;
+      appServiceFactory.getShare = _getShare;
 
       return appServiceFactory;
 })

@@ -15,8 +15,9 @@ namespace Lotify.Models.Lotes
         }
 
         public int Id { get; set; }
-        public int NumeroLote { get; set; }
+        //public int NumeroLote { get; set; }
         public decimal Precio { get; set; }
+        public string ImageUrl { get; set; }
         
         //Foreign Key Para Medida
         public int MedidaId { get; set; }
@@ -35,8 +36,8 @@ namespace Lotify.Models.Lotes
         public int AreaId { get; set; }
         public virtual Area Area { get; set; }
         
-        //public int UbicacionId { get; set; }
-        //public virtual Ubicacion Ubicacion { get; set; }
+        public int InteresId { get; set; }
+        public virtual Interes Interes { get; set; }
 
         public virtual ICollection<DetalleVenta> DetalleVentas { get; set; }
 
@@ -47,6 +48,10 @@ namespace Lotify.Models.Lotes
         public LoteConfiguration()
         {
             ToTable("Lotes");
+
+            Property(p => p.ImageUrl)
+                .IsRequired()
+                .HasMaxLength(100);
         }
     }
 }

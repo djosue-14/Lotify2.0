@@ -4,11 +4,6 @@
 
 @using (Html.BeginForm("Edit", "Lote", FormMethod.Post))
 {
-
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        @Html.LabelFor(m => m.NumeroLote, new { @class = "mdl-textfield__label" })
-        @Html.TextBoxFor(m => m.NumeroLote, new { @class = "mdl-textfield__input" })
-    </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         @Html.LabelFor(m => m.Precio, new { @class = "mdl-textfield__label" })
         @Html.TextBoxFor(m => m.Precio, new { @class = "mdl-textfield__input" })
@@ -57,6 +52,16 @@
             @foreach (var item in Model.Area)
             {
                 <option value="@item.Id">@item.NombreArea</option>
+
+            }
+        </select>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <select name="InteresId" id="InteresId">
+            @foreach (var item in Model.Interes)
+            {
+                <option value="@item.Id">@item.TasaInteres</option>
 
             }
         </select>

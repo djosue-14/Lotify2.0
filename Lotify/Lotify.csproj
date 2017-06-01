@@ -193,7 +193,9 @@
     <Compile Include="Controllers\Pagos\MesPagoController.cs" />
     <Compile Include="Controllers\Pagos\TipoPagoController.cs" />
     <Compile Include="Controllers\Telefonos\CompaniaTelefonoController.cs" />
+    <Compile Include="Controllers\Ventas\DetalleVentaController.cs" />
     <Compile Include="Controllers\Ventas\TipoFinanciamientoController.cs" />
+    <Compile Include="Controllers\Ventas\VentaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -218,10 +220,12 @@
     <Compile Include="Models\Empleados\EstadoEmpleado.cs" />
     <Compile Include="Models\Empleados\EstadoEmpleadoViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Lotes\Interes.cs" />
     <Compile Include="Models\Lotes\Area.cs" />
     <Compile Include="Models\Lotes\AreaViewModels.cs" />
     <Compile Include="Models\Lotes\EstadoLote.cs" />
     <Compile Include="Models\Lotes\EstadoLoteViewModels.cs" />
+    <Compile Include="Models\Lotes\InteresViewModels.cs" />
     <Compile Include="Models\Lotes\Lote.cs" />
     <Compile Include="Models\Lotes\LoteViewModels.cs" />
     <Compile Include="Models\Lotes\Lotificadora.cs" />
@@ -242,9 +246,11 @@
     <Compile Include="Models\Telefonos\TelefonoLotificadora.cs" />
     <Compile Include="Models\Ventas\Comision.cs" />
     <Compile Include="Models\Ventas\DetalleVenta.cs" />
+    <Compile Include="Models\Ventas\DetalleVentaViewModels.cs" />
     <Compile Include="Models\Ventas\TipoFinanciamiento.cs" />
     <Compile Include="Models\Ventas\TipoFinanciamientoViewModels.cs" />
     <Compile Include="Models\Ventas\Venta.cs" />
+    <Compile Include="Models\Ventas\VentaViewModels.cs" />
     <Compile Include="MySqlDB\MySqlConfiguration.cs" />
     <Compile Include="MySqlDB\MySqlHistoryContext.cs" />
     <Compile Include="MySqlDB\MySqlInitializer.cs" />
@@ -264,6 +270,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\laptop.jpg" />
     <Content Include="Images\welcome_card.jpg" />
     <Content Include="Scripts\angular\angular-datatables.js" />
     <Content Include="Scripts\angular\angular-local-storage.min.js" />
@@ -283,8 +290,10 @@
     <Content Include="Scripts\app\controllers\Pagos\MesPagoController.js" />
     <Content Include="Scripts\app\controllers\Pagos\TipoPagoController.js" />
     <Content Include="Scripts\app\controllers\Telefonos\CompaniaTelefonoController.js" />
+    <Content Include="Scripts\app\controllers\Ventas\VentaController.js" />
     <Content Include="Scripts\app\controllers\Ventas\TipoFinanciamientoController.js" />
     <Content Include="Scripts\app\services\appService.js" />
+    <Content Include="Scripts\app\services\ventaService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.eot" />
@@ -384,9 +393,16 @@
     <Content Include="Views\Lote\Create.cshtml" />
     <Content Include="Views\Lote\Edit.cshtml" />
     <Content Include="Views\Lote\Index.cshtml" />
+    <Content Include="Views\Venta\Index.cshtml" />
+    <Content Include="Views\Venta\Create.cshtml" />
+    <Content Include="Views\DetalleVenta\Index.cshtml" />
+    <Content Include="Views\DetalleVenta\Create.cshtml" />
+    <Content Include="Views\Venta\Edit.cshtml" />
+    <Content Include="Views\Venta\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Lotes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

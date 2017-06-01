@@ -16,7 +16,7 @@ namespace Lotify.Models.Pagos
 
         public string NombreTipo { get; set; }
 
-        public virtual ICollection<Pago> Pagos { get; set; }
+        //public virtual ICollection<Pago> Pagos { get; set; }
     }
 
     public class TipoPagoConfiguration: EntityTypeConfiguration<TipoPago>

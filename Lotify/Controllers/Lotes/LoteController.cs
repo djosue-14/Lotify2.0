@@ -3,6 +3,7 @@ using Lotify.Models.Lotes;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -36,7 +37,6 @@ namespace Lotify.Controllers.Lotes
 
             var Lotes = dbCtx.Lote.Select(c => new {
                 c.Id,
-                c.NumeroLote,
                 c.Precio,
                 Medida = new {
                     c.Medida.Id,
@@ -86,6 +86,7 @@ namespace Lotify.Controllers.Lotes
             model.Lotificadora = dbCtx.Lotificadora.ToList();
             model.Area = dbCtx.Area.ToList();
             model.Manzana = dbCtx.Manzana.ToList();
+            model.Interes = dbCtx.Interes.ToList();
 
             return View(model);
         }
@@ -93,19 +94,63 @@ namespace Lotify.Controllers.Lotes
         [HttpPost]
         public ActionResult Create(LoteViewModels model)
         {
+
+            var validImageTypes = new string[]
+            {
+                "image/gif",
+                "image/jpeg",
+                "image/pjpeg",
+                "image/png",
+            };
+
+            if (model.ImageUpload == null || model.ImageUpload.ContentLength == 0)
+            {
+                ModelState.AddModelError("ImageUpload", "Es requerido.");
+            }
+            else if (!validImageTypes.Contains(model.ImageUpload.ContentType))
+            {
+                ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
+            }
+
             if (ModelState.IsValid)
             {
-                Lotes.NumeroLote = model.NumeroLote;
                 Lotes.Precio = model.Precio;
                 Lotes.MedidaId = model.MedidaId;
            
                 //Seleccionamos el estad cliente que sea 'ACTIVO' y luego lo agregamos a FK EstadoClienteId
-                EstadoLote estado = dbCtx.EstadoLote.FirstOrDefault(e => e.NombreEstado == "Activo");
+                EstadoLote estado = dbCtx.EstadoLote.FirstOrDefault(e => e.NombreEstado == "Disponible");
                 Lotes.EstadoLoteId = estado.Id;
 
                 Lotes.LotificadoraId = model.LotificadoraId;
                 Lotes.ManzanaId = model.ManzanaId;
                 Lotes.AreaId = model.AreaId;
+                Lotes.InteresId = model.InteresId;
+
+                if(model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
+                {
+                    //Invertimos el nombre de la imagen y tomamos la extension de esta
+                    string extension = Reverse(model.ImageUpload.FileName).Split('.')[0];
+                    extension = Reverse(extension); //invertimos nuevamente la cadena generada en la linea anterior
+                    string nameImage;
+
+                    string time = DateTime.UtcNow.ToString();
+                    time = time.Replace("/", "_");
+                    time = time.Replace(" ", "_");
+                    time = time.Replace(":", "_");
+                    time = time.Replace(".", "");
+
+                    //Le damos un nuevo nombre a la imagen, en base al fecha y hora para que no se repitan urls.
+                    nameImage = time + "." + extension;
+
+                    string uploadDir = "../Images/Lotes/"; //Ruta donde se guardara.
+                    var imagePath = Path.Combine(Server.MapPath(uploadDir), nameImage);//generamos el path
+
+                    //generamos la url a guardar en la base de datos.
+                    var imageUrl = Path.Combine(uploadDir, nameImage);
+                    model.ImageUpload.SaveAs(imagePath);//guardamos la imagen.
+
+                    Lotes.ImageUrl = imageUrl;//por ultimo la pasamos la url al modelo para ser guardada en la BD.
+                }
 
                 dbCtx.Lote.Add(Lotes);
                 dbCtx.SaveChanges();
@@ -122,7 +167,6 @@ namespace Lotify.Controllers.Lotes
             LoteViewModels model = new LoteViewModels();
 
             Lotes = dbCtx.Lote.FirstOrDefault(a => a.Id == id);
-            model.NumeroLote = Lotes.NumeroLote;
             model.Precio = Lotes.Precio ;
             model.MedidaId = Lotes.MedidaId;
             model.EstadoLoteId = Lotes.EstadoLoteId;
@@ -135,6 +179,7 @@ namespace Lotify.Controllers.Lotes
             model.Lotificadora = dbCtx.Lotificadora.ToList();
             model.Area = dbCtx.Area.ToList();
             model.Manzana = dbCtx.Manzana.ToList();
+            model.Interes = dbCtx.Interes.ToList();
 
             dbCtx.SaveChanges();
 
@@ -147,7 +192,6 @@ namespace Lotify.Controllers.Lotes
             if (ModelState.IsValid)
             {
                 Lotes = dbCtx.Lote.FirstOrDefault(a => a.Id == model.Id);
-                Lotes.NumeroLote = model.NumeroLote;
                 Lotes.Precio = model.Precio;
 
                 Lotes.MedidaId = model.MedidaId;
@@ -155,6 +199,7 @@ namespace Lotify.Controllers.Lotes
                 Lotes.LotificadoraId = model.LotificadoraId;
                 Lotes.ManzanaId = model.ManzanaId;
                 Lotes.AreaId = model.AreaId;
+                Lotes.InteresId = model.InteresId;
 
                 dbCtx.SaveChanges();
             }
@@ -178,6 +223,57 @@ namespace Lotify.Controllers.Lotes
             }
 
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+        }
+
+        public JsonResult ShowDisponibles()
+        {
+            var lotes = dbCtx.Lote.Select(c => new {
+                c.Id,
+                c.Precio,
+                c.ImageUrl,
+                Medida = new
+                {
+                    c.Medida.Id,
+                    c.Medida.Ancho,
+                    c.Medida.Largo,
+                },
+                EstadoLote = new
+                {
+                    c.EstadoLote.Id,
+                    c.EstadoLote.NombreEstado,
+                },
+                Lotificadora = new
+                {
+                    c.Lotificadora.Id,
+                    c.Lotificadora.NombreLotificadora,
+                    c.Lotificadora.Direccion,
+                },
+                Manzana = new
+                {
+                    c.Manzana.Id,
+                    c.Manzana.NombreManzana,
+                },
+                Area = new
+                {
+                    c.Area.Id,
+                    c.Area.NombreArea,
+                },
+                Interes = new
+                {
+                    c.Interes.Id,
+                    c.Interes.TasaInteres,
+                }
+            }).Where(c => c.EstadoLote.NombreEstado == "Disponible");
+
+            return Json(lotes,
+                JsonRequestBehavior.AllowGet);
+        }
+
+        public static string Reverse(string s)
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
         }
     }
 }

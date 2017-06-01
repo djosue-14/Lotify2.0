@@ -18,7 +18,9 @@ namespace Lotify.Models.Ventas
 
         public int Id { get; set; }
         public DateTime FechaVenta { get; set; }
-        public int NumeroComprobante { get; set; }
+
+        public decimal Total { get; set; }
+        public decimal Cuota { get; set; }
 
         //Foreign Key para Empleado
         public int EmpleadoId { get; set; }
@@ -32,7 +34,11 @@ namespace Lotify.Models.Ventas
         public int TipoFinanciamientoId { get; set; }
 
         public virtual TipoFinanciamiento TipoFinanciamiento { get; set; }
-        
+
+        public int UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
+
         public virtual ICollection<DetalleVenta> DetalleVentas { get; set; }
 
         public virtual ICollection<Pago> Pagos { get; set; }

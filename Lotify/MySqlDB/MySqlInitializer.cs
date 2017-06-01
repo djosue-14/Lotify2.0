@@ -27,7 +27,7 @@ namespace MySqlDB
                 {
                     context.Database.Delete();
                     context.Database.Create();
-                }
+                }//*/
             }
         }
     }

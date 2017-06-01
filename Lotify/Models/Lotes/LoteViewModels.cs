@@ -11,9 +11,9 @@ namespace Lotify.Models.Lotes
 
         public int Id { get; set; }
 
-        [Required]
-        [Display(Name = "numero de lote")]
-        public int NumeroLote { get; set; }
+        //[Required]
+        //[Display(Name = "numero de lote")]
+        //public int NumeroLote { get; set; }
 
         [Required]
         [Display(Name = "Precio")]
@@ -45,6 +45,15 @@ namespace Lotify.Models.Lotes
         [Display(Name = "Area")]
         public int AreaId { get; set; }
 
+        public string ImageUrl { get; set; }
+
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase ImageUpload { get; set; }
+
+        [Required]
+        [Display(Name = "Interes")]
+        public int InteresId { get; set; }
+
 
         public List<Medida> Medidas { get; set; }
 
@@ -53,6 +62,7 @@ namespace Lotify.Models.Lotes
         public List<Lotificadora> Lotificadora { get; set; }
         public List<Manzana> Manzana { get; set; }
         public List<Area> Area { get; set; } 
+        public List<Interes> Interes { get; set; }
 
 
     }

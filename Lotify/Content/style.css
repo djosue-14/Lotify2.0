@@ -14,30 +14,21 @@
               color: #fff;
             }
 
+
 .colorblanco {
 color: white;
-}
-
-.colorblack{
-color: black;
 }
 
 .color-texto {
    color: #455a64;
 }
 
-.ali {
-				position:relative;
-			}
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #5D9CEC;
-  border-bottom: 3px solid #4A89DC;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  margin:30px 10px;
+.demo-card-square > .mdl-card__title {
+    color: #fff;
 }
-            
+
+.demo-card-square > .mdl-card__actions {
+  height: 52px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+}

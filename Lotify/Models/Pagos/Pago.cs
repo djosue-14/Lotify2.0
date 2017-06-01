@@ -15,21 +15,20 @@ namespace Lotify.Models.Pagos
         }
 
         public int Id { get; set; }
-        public int NumeroComprobante { get; set; }
+        //blic int NumeroComprobante { get; set; }
         public DateTime FechaPago { get; set; }
-        public decimal CantidadCancelada { get; set; }
+        public decimal Cantidad { get; set; }
+        public decimal SaldoAnterior { get; set; }
+        public decimal SaldoActual { get; set; }
         
         //Foreign Key a Venta
         public int VentaId { get; set; }
         public virtual Venta Venta { get; set; }
 
-        //Foreign Key a TipoPago
-        public int TipoPagoId { get; set; }
-        public virtual TipoPago TipoPago { get; set; }
-
-        //Foreign Key a MesPago
-        public int MesPagoId { get; set; }
-        public virtual MesPago MesPago { get; set; }
+        //Foreign Key a Users
+        public int UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
+        
     }
 
     public class PagoConfiguration: EntityTypeConfiguration<Pago>
@@ -41,7 +40,7 @@ namespace Lotify.Models.Pagos
             Property(p => p.FechaPago)
                 .IsRequired();
 
-            Property(p => p.CantidadCancelada)
+            Property(p => p.Cantidad)
                 .IsRequired();
         }
     }

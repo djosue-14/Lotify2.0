@@ -2,6 +2,7 @@
 
 @using (Html.BeginForm("Create", "Empleado", FormMethod.Post))
 {
+    @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         @Html.LabelFor(m => m.Nombre, new { @class = "mdl-textfield__label" })
         @Html.TextBoxFor(m => m.Nombre, new { @class = "mdl-textfield__input" })

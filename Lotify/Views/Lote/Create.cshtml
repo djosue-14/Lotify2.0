@@ -1,11 +1,7 @@
 ﻿@model Lotify.Models.Lotes.LoteViewModels
 
-@using (Html.BeginForm("Create", "Lote", FormMethod.Post))
+@using (Html.BeginForm("Create", "Lote", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        @Html.LabelFor(m => m.NumeroLote, new { @class = "mdl-textfield__label" })
-        @Html.TextBoxFor(m => m.NumeroLote, new { @class = "mdl-textfield__input" })
-    </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         @Html.LabelFor(m => m.Precio, new { @class = "mdl-textfield__label" })
         @Html.TextBoxFor(m => m.Precio, new { @class = "mdl-textfield__input" })
@@ -19,9 +15,7 @@
             }
         </select>
     </div>
-
     
-
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <select name="LotificadoraId" id="LotificadoraId">
             @foreach (var item in Model.Lotificadora)
@@ -49,6 +43,20 @@
 
             }
         </select>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <select name="InteresId" id="InteresId">
+            @foreach (var item in Model.Interes)
+            {
+                <option value="@item.Id">@item.TasaInteres</option>
+
+            }
+        </select>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label for="ImageUpload">Subir Imagen</label>
+        <input class="mdl-textfield__input" type="file" id="ImageUpload" name="ImageUpload">
     </div>
 
 
