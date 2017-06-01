@@ -156,6 +156,7 @@ namespace Lotify.Controllers.Ventas
                 {
                     venta = dbCtx.Venta.FirstOrDefault(a => a.Id == model.Id);
                     venta.Total = (venta.Total - model.Abono);
+                    venta.UserId = Convert.ToInt32(User.Identity.GetUserId());
                     dbCtx.SaveChanges();
                 }
             }
