@@ -1,5 +1,6 @@
 ﻿using Lotify.Models;
 using Lotify.Models.Lotes;
+using Lotify.Models.Telefonos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Lotify.Controllers.Lotes
         // GET: EstadoLote
         private ApplicationDbContext dbCtx;
         private Lotificadora Lotificadora;
+        private TelefonoLotificadora TelLoti;
         //private object lotificadora;
         //private object lotificadoras;
 
@@ -29,13 +31,19 @@ namespace Lotify.Controllers.Lotes
         {
             ViewBag.Title = "Lotificadora";
 
-            return View();
+            var lista = dbCtx.Lotificadora.ToList();
+            return View(lista);
         }
 
         [HttpGet]
         public JsonResult Show()
         {
-            var listaLotificadora = dbCtx.Lotificadora.ToList();
+            var listaLotificadora = dbCtx.Lotificadora.Select(c => new
+            {
+                c.Id,
+                c.NombreLotificadora,
+                c.Direccion
+            });
 
             return Json(listaLotificadora, JsonRequestBehavior.AllowGet);
         }
@@ -51,7 +59,12 @@ namespace Lotify.Controllers.Lotes
         public ActionResult Create()
         {
             ViewBag.Title = "Agregar Lotificadora";
-            return View();
+
+            LotificadoraViewModels LotificadoraTelefono = new LotificadoraViewModels();
+
+            LotificadoraTelefono.Companias = dbCtx.CompaniaTelefono.ToList();
+
+            return View(LotificadoraTelefono);
         }
 
         [HttpPost]
@@ -63,6 +76,14 @@ namespace Lotify.Controllers.Lotes
                 Lotificadora.NombreLotificadora = model.NombreLotificadora;
                 Lotificadora.Direccion = model.Direccion;
                 dbCtx.Lotificadora.Add(Lotificadora);
+                dbCtx.SaveChanges();
+
+                TelefonoLotificadora telefono = new TelefonoLotificadora();
+                telefono.NumeroTelefono = model.NumeroTelefono;
+                telefono.CompaniaTelefonoId = model.CompaniaTelefonoId;
+                telefono.LotificadoraId = Lotificadora.Id;
+
+                dbCtx.TelefonoLotificadora.Add(telefono);
                 dbCtx.SaveChanges();
             }
             return RedirectToAction("Index");
@@ -97,6 +118,36 @@ namespace Lotify.Controllers.Lotes
             return RedirectToAction("Index");
         }
 
+        //desde aka----------------------------------------------------------------
+        public ActionResult EditTel(int id)
+        {
+            ViewBag.Title = "Editar Numero";
+
+            TelefonoLotificadoraViewModels tellotificadora = new TelefonoLotificadoraViewModels();
+
+            TelLoti = dbCtx.TelefonoLotificadora.FirstOrDefault(a => a.LotificadoraId == id);
+            tellotificadora.NumeroTelefono = TelLoti.NumeroTelefono;
+            tellotificadora.CompaniaTelefonoId = TelLoti.CompaniaTelefonoId;
+
+            tellotificadora.Companias = dbCtx.CompaniaTelefono.ToList();
+
+            return View(tellotificadora);
+        }
+
+        [HttpPost, ActionName("EditTel")]
+        public ActionResult EditTel(TelefonoLotificadoraViewModels model)
+        {
+            if (ModelState.IsValid)
+            {
+                TelLoti = dbCtx.TelefonoLotificadora.FirstOrDefault(a => a.Id == model.Id);
+                TelLoti.NumeroTelefono = model.NumeroTelefono;
+                TelLoti.CompaniaTelefonoId = model.CompaniaTelefonoId;
+
+                dbCtx.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult Delete(AreaViewModels model)

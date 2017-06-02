@@ -24,14 +24,18 @@ namespace Lotify.Controllers.Telefonos
         public ActionResult Index()
         {
             ViewBag.Title = "Compania Telefono";
-
+            var lista = dbCtx.CompaniaTelefono.ToList();
             return View();
         }
 
         [HttpGet]
         public JsonResult Show()
         {
-            var listaCompania = dbCtx.CompaniaTelefono.ToList();
+            var listaCompania = dbCtx.CompaniaTelefono.Select(c => new
+            {
+                c.Id,
+                c.NombreCompania
+            });
 
             return Json(listaCompania, JsonRequestBehavior.AllowGet);
         }

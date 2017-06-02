@@ -114,7 +114,7 @@ app.controller('VentaController', function ($scope, $timeout, $http, appService,
 	$scope.save = function () {
 
 	    $scope.model.ClienteId = appService.getShare();
-	    console.log($scope.data[0].Id)
+	    //console.log($scope.data[0].Id)
 
 	    $http.post(url + "/Create/", {
 	        Total: $scope.calculo.total,
@@ -124,7 +124,12 @@ app.controller('VentaController', function ($scope, $timeout, $http, appService,
 	        detalle: { LoteId: $scope.data[0].Id },
 	    })
         .success(function (data, status, headers, config) {
+            //console.log(headers);
+            console.log(data.venta);
             console.log(status);
+            if (data.venta !== null) {
+                window.location.href = '../../DetalleVenta/ReportePdf/'+data.venta;
+            }
         })
         .error(function (error, status, headers, config) {
             console.log(status);
@@ -196,25 +201,6 @@ app.controller('VentaController', function ($scope, $timeout, $http, appService,
 	    }//*/
 	}
 
-
-	/*var calcularCuota = function () {
-
-        //Suma de precios de los lotes seleccionados.
-	    $scope.calculo.total += $scope.lotesSelected.Precio;
-
-        //Calculo de la cuota sin interes.
-	    $scope.calculo.cuota += ($scope.lotesSelected.Precio / $scope.finan);
-
-
-	    $scope.calculo.interes += ($scope.lotesSelected.Precio / $scope.finan) * ($scope.lotesSelected.TasaInteres / 100);
-        //Calculo del interes a pagar
-	    $scope.calculo.monto = ($scope.lotesSelected.Precio / $scope.finan) * ($scope.lotesSelected.TasaInteres / 100);
-        //Suma del la cantidad de interes a la cuota
-	    $scope.calculo.cuota += $scope.calculo.monto;
-	    $scope.calculo.total += ($scope.calculo.monto * $scope.finan);
-
-	}*/
-
 	var calc = function () {
 
 	    var i = ( ($scope.lotesSelected.TasaInteres / 100) / $scope.finan);
@@ -234,17 +220,6 @@ app.controller('VentaController', function ($scope, $timeout, $http, appService,
 	    $scope.calculo.monto = (p.toPrecision(4) * $scope.finan) - $scope.lotesSelected.Precio;
 
 	    console.log(p);
-
-	    /*$http.get(url + "/CalcularCuota", {
-	        params: { precio: $scope.lotesSelected.Precio, interes: i, plazo: $scope.finan }
-	    })
-          .success(function (data) {
-              console.log(data);
-              //$scope.posts = data;
-          })
-          .error(function (err) {
-              console.log(err);
-          });*/
 	}
 
 });

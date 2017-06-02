@@ -1,7 +1,7 @@
 ﻿@model IList<Lotify.Models.Lotes.Lotificadora>
 
 
-<div ng-controller="EstadoLoteController">
+<div ng-controller="LotificadoraController">
 
     <div class="content-grid mdl-grid">
 
@@ -11,7 +11,7 @@
             <table id="lotifyTable" class="mdl-data-table mdl-shadow--2dp" cellspacing="0" width="100%" datatable="ng">
                 <thead>
                     <tr>
-                        <th>NOMBRELOTIFICADORA</th>
+                        <th>NOMBRE LOTIFICADORA</th>
                         <th>DIRECCION</th>
                     </tr>
                 </thead>
@@ -23,8 +23,11 @@
                             <button class="mdl-button mdl-button--icon" id="abrir-dialog" ng-click="selectElementDelete(r.Id)">
                                 <i class="material-icons">delete</i>
                             </button>
-                            <a href="@Url.Action("Edit", "lotificadoras")/{{r.Id}}" class="mdl-button mdl-button--icon">
+                            <a href="@Url.Action("Edit", "Lotificadora")/{{r.Id}}" class="mdl-button mdl-button--icon">
                                 <i class="material-icons">mode_edit</i>
+                            </a>
+                            <a href="@Url.Action("EditTel", "Lotificadora")/{{r.Id}}" class="mdl-button mdl-button--icon">
+                                <i class="material-icons">settings_phone</i>
                             </a>
                         </td>
                     </tr>
@@ -49,4 +52,5 @@
 
 @section Scripts {
     <script src="~/Scripts/app/controllers/Lotes/LotificadoraController.js"></script>
+
 }

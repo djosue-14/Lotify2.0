@@ -14,6 +14,7 @@ namespace Lotify.Controllers.Clientes
     {
         private ApplicationDbContext dbCtx;
         private Cliente cliente;
+        private TelefonoCliente TelCliente;
 
         public ClienteController()
         {
@@ -136,6 +137,34 @@ namespace Lotify.Controllers.Clientes
             return RedirectToAction("Index");
         }
 
+        //desde aka----------------------------------------------------------------
+        public ActionResult EditTel(int id)
+        {
+            ViewBag.Title = "Editar Numero";
+
+            TelefonoClienteViewModels telcli = new TelefonoClienteViewModels();
+
+            TelCliente = dbCtx.TelefonoCliente.FirstOrDefault(a => a.ClienteId == id);
+            telcli.NumeroTelefono = TelCliente.NumeroTelefono;
+            telcli.CompaniaTelefonoId = TelCliente.CompaniaTelefonoId;
+
+            telcli.Companias = dbCtx.CompaniaTelefono.ToList();
+            return View(telcli);
+        }
+
+        [HttpPost, ActionName("EditTel")]
+        public ActionResult EditTel(TelefonoClienteViewModels telcli)
+        {
+            if (ModelState.IsValid)
+            {
+                TelCliente = dbCtx.TelefonoCliente.FirstOrDefault(a => a.Id == telcli.Id);
+                TelCliente.NumeroTelefono = telcli.NumeroTelefono;
+                TelCliente.CompaniaTelefonoId = telcli.CompaniaTelefonoId;
+                dbCtx.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult Delete(ClienteViewModels model)

@@ -3,9 +3,9 @@
 
 <div class="content-grid mdl-grid">
 
-    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--3-col"></div>
 
-    <div class="mdl-cell mdl-cell--4-col">
+    <div class="mdl-cell mdl-cell--8-col">
 
         @using (Html.BeginForm("Edit", "Cliente", FormMethod.Post))
         {
@@ -22,17 +22,29 @@
                 @Html.TextBoxFor(m => m.Dpi, new { @class = "mdl-textfield__input" })
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                @Html.LabelFor(m => m.Genero, new { @class = "mdl-textfield__label" })
-                @Html.TextBoxFor(m => m.Genero, new { @class = "mdl-textfield__input" })
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label>Genero</label>
+                <select name="Genero" id="Genero">
+                    @if (Model.Genero == "M")
+                    {
+                        <option value="M" selected="selected">Masculino</option>
+                        <option value="F"> Femenino </option>
+                    }
+                    else
+                    {
+                        <option value="M">Masculino</option>
+                        <option value="F" selected="selected">Femenino</option>
+                    }
+                </select>
+            </div><div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 @Html.LabelFor(m => m.Direccion, new { @class = "mdl-textfield__label" })
                 @Html.TextBoxFor(m => m.Direccion, new { @class = "mdl-textfield__input" })
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label>Fecha de Nacimiento</label>
                 @Html.EditorFor(m => m.FechaNacimiento, new { @type = "date" })
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label>Estado de Cliente</label>
                 <select name="EstadoClienteId" id="EstadoClienteId">
                     @foreach (var item in Model.EstadoCliente)
                     {
@@ -47,12 +59,12 @@
                     }
                 </select>
             </div>
-            <input type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+            <input type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised"
                    value="Editar" />
         }
 
     </div>
 
-    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--1-col"></div>
 
 </div>

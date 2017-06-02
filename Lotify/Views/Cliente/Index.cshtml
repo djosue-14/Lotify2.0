@@ -32,6 +32,10 @@
                             <a href="@Url.Action("Edit", "Cliente")/{{r.Id}}" class="mdl-button mdl-button--icon">
                                 <i class="material-icons">mode_edit</i>
                             </a>
+                            <a href="@Url.Action("EditTel", "Cliente")/{{r.Id}}" class="mdl-button mdl-button--icon">
+                                <i class="material-icons">settings_phone</i>
+                            </a>
+
                             <a href="@Url.Action("Create", "Venta")" class="mdl-button mdl-button--icon" ng-click="compartir(r.Id)">
                                 <i class="material-icons">check</i>
                             </a>

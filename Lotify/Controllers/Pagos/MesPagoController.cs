@@ -24,14 +24,18 @@ namespace Lotify.Controllers.Pagos
         public ActionResult Index()
         {
             ViewBag.Title = "Mes Pago";
-
+            var lista = dbCtx.MesPago.ToList();
             return View();
         }
 
         [HttpGet]
         public JsonResult Show()
         {
-            var listaMes = dbCtx.MesPago.ToList();
+            var listaMes = dbCtx.MesPago.Select(c => new
+            {
+                c.Id,
+                c.NombreMes
+            });
 
             return Json(listaMes, JsonRequestBehavior.AllowGet);
         }

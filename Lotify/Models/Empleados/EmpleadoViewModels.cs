@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lotify.Models.Telefonos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -65,6 +66,16 @@ namespace Lotify.Models.Empleados
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
 
+        //Aca empieza TelefonoEmpleado
+
+        [Display(Name = "Numero de Telefono")]
+        public int NumeroTelefono { get; set; }
+        [Display(Name = "Compania de Telefono")]
+        public int CompaniaTelefonoId { get; set; }
+        [Display(Name = "Lista Companias Telefonicas")]
+
+        public List<CompaniaTelefono> Companias { get; set; }
+
         public List<EstadoEmpleado> EstadoEmpleado { get; set; }
         public List<CargoEmpleado> CargoEmpleado { get; set; }
         public List<ApplicationUser> User { get; set; }
@@ -115,6 +126,17 @@ namespace Lotify.Models.Empleados
         [Required]
         [Display(Name = "Usuario del Empleado")]
         public int UserId { get; set; }
+
+        //Aca empieza TelefonoEmpleado
+
+        [Display(Name = "Numero de Telefono")]
+        public int NumeroTelefono { get; set; }
+
+        [Display(Name = "Compania de Telefono")]
+        public int CompaniaTelefonoId { get; set; }
+
+        public List<CompaniaTelefono> Companias { get; set; }
+
 
         public List<EstadoEmpleado> EstadoEmpleado { get; set; }
         public List<CargoEmpleado> CargoEmpleado { get; set; }

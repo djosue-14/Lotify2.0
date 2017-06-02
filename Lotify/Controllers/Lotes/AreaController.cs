@@ -25,14 +25,18 @@ namespace Lotify.Controllers.Lotes
         public ActionResult Index()
         {
             ViewBag.Title = "Area";
-
+            var lista = dbCtx.Area.ToList();
             return View();
         }
 
         [HttpGet]
         public JsonResult Show()
         {
-            var listaArea = dbCtx.Area.ToList();
+            var listaArea = dbCtx.Area.Select(c => new
+            {
+                c.Id,
+                c.NombreArea
+            });
 
             return Json(listaArea, JsonRequestBehavior.AllowGet);
         }

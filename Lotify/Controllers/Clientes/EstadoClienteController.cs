@@ -24,21 +24,20 @@ namespace Lotify.Controllers.Clientes
         {
             ViewBag.Title = "Estado Clientes";
 
-            //var lista = dbCtx.EstadoCliente.ToList();
+            var lista = dbCtx.EstadoCliente.ToList();
             return View();
         }
 
         [HttpGet]
         public JsonResult Show()
         {
-            //var resultado = dbCtx.EstadoCliente.ToList();
+            var listaEstados = dbCtx.EstadoCliente.Select(c => new
+            {
+                c.Id,
+                c.NombreEstado
+            });
 
-            //return Json(resultado);
-           // IList<EstadoCliente> listaEstadoCliente = new List<EstadoCliente>();
-
-            var listaEstados = dbCtx.EstadoCliente.ToList();
-            
-            return Json (listaEstados, JsonRequestBehavior.AllowGet);
+            return Json(listaEstados, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

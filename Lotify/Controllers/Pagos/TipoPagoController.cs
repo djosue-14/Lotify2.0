@@ -25,16 +25,20 @@ namespace Lotify.Controllers.Pagos
         public ActionResult Index()
         {
             ViewBag.Title = "Tipo de Pago";
-
+            var lista = dbCtx.TipoPago.ToList();
             return View();
         }
 
         [HttpGet]
         public JsonResult Show()
         {
-            var listaTipoPago = dbCtx.TipoPago.ToList();
+            var listaTipo = dbCtx.TipoPago.Select(c => new
+            {
+                c.Id,
+                c.NombreTipo
+            });
 
-            return Json(listaTipoPago, JsonRequestBehavior.AllowGet);
+            return Json(listaTipo, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

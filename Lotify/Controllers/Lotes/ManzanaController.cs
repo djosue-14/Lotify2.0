@@ -24,14 +24,18 @@ namespace Lotify.Controllers.Lotes
         public ActionResult Index()
         {
             ViewBag.Title = "Manzana";
-
+            var lista = dbCtx.Manzana.ToList();
             return View();
         }
 
         [HttpGet]
         public JsonResult Show()
         {
-            var listaManzana = dbCtx.Manzana.ToList();
+            var listaManzana = dbCtx.Manzana.Select(c => new
+            {
+                c.Id,
+                c.NombreManzana
+            });
 
             return Json(listaManzana, JsonRequestBehavior.AllowGet);
         }

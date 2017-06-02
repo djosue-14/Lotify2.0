@@ -24,16 +24,20 @@ namespace Lotify.Controllers.Ventas
         public ActionResult Index()
         {
             ViewBag.Title = "Tipo Financiamiento";
-
+            var lista = dbCtx.TipoFinanciamiento.ToList();
             return View();
         }
 
         [HttpGet]
         public JsonResult Show()
         {
-            var listaFinanciamiento = dbCtx.TipoFinanciamiento.ToList();
+            var listaFinanziamiento = dbCtx.TipoFinanciamiento.Select(c => new
+            {
+                c.Id,
+                c.Plazo
+            });
 
-            return Json(listaFinanciamiento, JsonRequestBehavior.AllowGet);
+            return Json(listaFinanziamiento, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

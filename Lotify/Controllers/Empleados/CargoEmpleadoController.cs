@@ -26,15 +26,21 @@ namespace Lotify.Controllers.Empleados
         {
             ViewBag.Title = "Cargo Empleados";
 
+            var lista = dbCtx.CargoEmpleado.ToList();
             return View();
         }
 
         [HttpGet]
         public JsonResult Show()
         {
-            var listaCargos = dbCtx.CargoEmpleado.ToList();
+            var listaCargo = dbCtx.CargoEmpleado.Select(c => new
+            {
+                c.Id,
+                c.NombreCargo,
+                c.Sueldo
+            });
 
-            return Json(listaCargos, JsonRequestBehavior.AllowGet);
+            return Json(listaCargo, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

@@ -188,6 +188,7 @@
     <Compile Include="Controllers\Lotes\EstadoLoteController.cs" />
     <Compile Include="Controllers\Lotes\LoteController.cs" />
     <Compile Include="Controllers\Lotes\LotificadoraController.cs" />
+    <Compile Include="Controllers\Lotes\MedidaController.cs" />
     <Compile Include="Controllers\Lotes\ManzanaController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Pagos\MesPagoController.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Models\Lotes\Lotificadora.cs" />
     <Compile Include="Models\Lotes\LotificadoraViewModels.cs" />
     <Compile Include="Models\Lotes\Manzana.cs" />
+    <Compile Include="Models\Lotes\MedidaViewModels.cs" />
     <Compile Include="Models\Lotes\ManzanaViewModels.cs" />
     <Compile Include="Models\Lotes\Medida.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -242,6 +244,9 @@
     <Compile Include="Models\Telefonos\CompaniaTelefono.cs" />
     <Compile Include="Models\Telefonos\CompaniaTelefonoViewModels.cs" />
     <Compile Include="Models\Telefonos\TelefonoCliente.cs" />
+    <Compile Include="Models\Telefonos\TelefonoLotificadoraViewModels.cs" />
+    <Compile Include="Models\Telefonos\TelefonoEmpleadoViewModels.cs" />
+    <Compile Include="Models\Telefonos\TelefonoClienteViewModels.cs" />
     <Compile Include="Models\Telefonos\TelefonoEmpleado.cs" />
     <Compile Include="Models\Telefonos\TelefonoLotificadora.cs" />
     <Compile Include="Models\Ventas\Comision.cs" />
@@ -286,6 +291,7 @@
     <Content Include="Scripts\app\controllers\Lotes\EstadoLoteController.js" />
     <Content Include="Scripts\app\controllers\Lotes\LoteController.js" />
     <Content Include="Scripts\app\controllers\Lotes\LotificadoraController.js" />
+    <Content Include="Scripts\app\controllers\Lotes\MedidaController.js" />
     <Content Include="Scripts\app\controllers\Lotes\ManzanaController.js" />
     <Content Include="Scripts\app\controllers\Pagos\MesPagoController.js" />
     <Content Include="Scripts\app\controllers\Pagos\TipoPagoController.js" />
@@ -399,10 +405,17 @@
     <Content Include="Views\DetalleVenta\Create.cshtml" />
     <Content Include="Views\Venta\Edit.cshtml" />
     <Content Include="Views\Venta\Error.cshtml" />
+    <Content Include="Views\Cliente\EditTel.cshtml" />
+    <Content Include="Views\Empleado\EditTel.cshtml" />
+    <Content Include="Views\Lotificadora\EditTel.cshtml" />
+    <Content Include="Views\Medida\Create.cshtml" />
+    <Content Include="Views\Medida\Edit.cshtml" />
+    <Content Include="Views\Medida\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Lotes\" />
+    <Folder Include="Reportes\FacturaVenta\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

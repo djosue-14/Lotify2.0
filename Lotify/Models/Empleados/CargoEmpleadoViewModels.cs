@@ -12,7 +12,7 @@ namespace Lotify.Models.Empleados
 
         [Required]
         [StringLength(25, ErrorMessage = "Se requiere el nombre del cargo.")]
-        [Display(Name = "Nombre del Estado")]
+        [Display(Name = "Nombre del Cargo")]
         public string NombreCargo{ get; set; }
 
         [Display(Name  = "Sueldo")]

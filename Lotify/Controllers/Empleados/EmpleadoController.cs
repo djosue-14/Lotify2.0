@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
-
-
+using Lotify.Models.Telefonos;
 
 namespace Lotify.Controllers.Empleados
 {
@@ -17,6 +16,7 @@ namespace Lotify.Controllers.Empleados
     {
         private ApplicationDbContext dbCtx;
         private Empleado empleado;
+        private TelefonoEmpleado TelEmpleado;
         private ApplicationUserManager _userManager;
 
         public EmpleadoController()
@@ -42,7 +42,6 @@ namespace Lotify.Controllers.Empleados
             }
         }
 
-        // GET: EstadoCliente
         public ActionResult Index()
         {
             ViewBag.Title = "Empleados";
@@ -99,7 +98,8 @@ namespace Lotify.Controllers.Empleados
             model.FechaNacimiento = new DateTime();
             model.CargoEmpleadoId = 0;
             model.CargoEmpleado = dbCtx.CargoEmpleado.ToList();
-
+            model.CompaniaTelefonoId = 0;
+            model.Companias = dbCtx.CompaniaTelefono.ToList();
             return View(model);
         }
 
@@ -133,7 +133,14 @@ namespace Lotify.Controllers.Empleados
                     dbCtx.Empleado.Add(empleado);
                     dbCtx.SaveChanges();
 
-                    model.CargoEmpleado = dbCtx.CargoEmpleado.ToList();
+                    TelefonoEmpleado telefono = new TelefonoEmpleado();
+                    telefono.NumeroTelefono = model.NumeroTelefono;
+                    telefono.CompaniaTelefonoId = model.CompaniaTelefonoId;
+                    telefono.EmpleadoId = empleado.Id;
+
+                    dbCtx.TelefonoEmpleado.Add(telefono);
+                    dbCtx.SaveChanges();
+
 
                     return RedirectToAction("Index");
                 }
@@ -195,6 +202,36 @@ namespace Lotify.Controllers.Empleados
             return RedirectToAction("Index");
         }
 
+        //desde aka----------------------------------------------------------------
+        [HttpGet]
+        public ActionResult EditTel(int id)
+        {
+            ViewBag.Title = "Editar Numero";
+
+            TelefonoEmpleadoViewModels telemp = new TelefonoEmpleadoViewModels();
+
+            TelEmpleado = dbCtx.TelefonoEmpleado.FirstOrDefault(a => a.EmpleadoId == id);
+            telemp.NumeroTelefono = TelEmpleado.NumeroTelefono;
+            telemp.CompaniaTelefonoId = TelEmpleado.CompaniaTelefonoId;
+
+            telemp.Companias = dbCtx.CompaniaTelefono.ToList();
+            return View(telemp);
+        }
+
+        [HttpPost, ActionName("EditTel")]
+        public ActionResult EditTel(TelefonoEmpleadoViewModels telemp)
+        {
+            if (ModelState.IsValid)
+            {
+                TelEmpleado = dbCtx.TelefonoEmpleado.FirstOrDefault(a => a.Id == telemp.Id);
+                TelEmpleado.NumeroTelefono = telemp.NumeroTelefono;
+                TelEmpleado.CompaniaTelefonoId = telemp.CompaniaTelefonoId;
+
+                dbCtx.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult Delete(EmpleadoViewModels model)

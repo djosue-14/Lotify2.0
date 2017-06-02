@@ -123,11 +123,16 @@ namespace Lotify.Controllers.Ventas
 
                 //Detalle
                 InsertDetalle(model);
+
+                //Comision.
+                //InsertComision(model);
+
             }
 
             if (num > 0)
             {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+                // return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK, venta.Id.ToString());
+                return Json( new { venta = venta.Id }, JsonRequestBehavior.AllowGet);
             }
 
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
@@ -204,6 +209,9 @@ namespace Lotify.Controllers.Ventas
 
             dbCtx.DetalleVenta.Add(detalle);
             dbCtx.SaveChanges();
+
+            //Lote
+            //CambiarEstado(lote.Id);
         }
     }
 }
